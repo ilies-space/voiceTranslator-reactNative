@@ -10,7 +10,7 @@ import {Home} from './src/Screens/Home';
 const App = () => {
   return (
     <View flex={1}>
-      <Home />
+      <VoiceToText />
     </View>
   );
 };
