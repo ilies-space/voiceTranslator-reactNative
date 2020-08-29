@@ -2,7 +2,14 @@
  * Voice Translation react native app
  */
 import React, {useState} from 'react';
-import {Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  TextInput,
+} from 'react-native';
 //
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Icon2 from 'react-native-vector-icons/dist/Fontisto';
@@ -49,7 +56,8 @@ export const Home = () => {
               borderRadius: 100 / 2,
               alignItems: 'center',
               justifyContent: 'center',
-            }}>
+            }}
+            onPress={() => console.log('switch language')}>
             <Icon2 name="arrow-swap" size={25} color="#888C9F" />
           </TouchableOpacity>
         </View>
@@ -105,7 +113,10 @@ export const Home = () => {
           bottom: 10,
           width: '100%',
         }}>
-        <ListneningOn />
+        {/* <ListneningOff /> */}
+        <View style={{marginHorizontal: 10, marginBottom: 10}}>
+          <InputArabic />
+        </View>
       </View>
     </View>
   );
@@ -124,7 +135,8 @@ const ListneningOn = () => {
           justifyContent: 'center',
           borderWidth: 10,
           borderColor: '#22272E',
-        }}>
+        }}
+        onPress={() => console.log('Stor listnig ...')}>
         <Icon name="pause" size={30} color="white" />
       </TouchableOpacity>
     </View>
@@ -144,8 +156,42 @@ const ListneningOff = () => {
           justifyContent: 'center',
           borderWidth: 10,
           borderColor: '#22272E',
-        }}>
+        }}
+        onPress={() => console.log('Start listnig ...')}>
         <Icon name="microphone" size={35} color="white" />
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const InputArabic = () => {
+  return (
+    <View style={{alignItems: 'center', flexDirection: 'row'}}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#C4C8D2',
+          borderRadius: 10,
+          marginHorizontal: 10,
+          paddingHorizontal: 100,
+        }}>
+        <TextInput placeholder={'أكتب النص هنا'} />
+      </View>
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#EF4D40',
+          width: 80,
+          height: 80,
+          borderRadius: 100 / 2,
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderWidth: 10,
+          borderColor: '#22272E',
+          right: 0,
+          position: 'absolute',
+        }}
+        onPress={() => console.log('Arab text ...')}>
+        <Icon name="send" size={35} color="white" />
       </TouchableOpacity>
     </View>
   );
