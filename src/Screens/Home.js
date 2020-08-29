@@ -1,77 +1,152 @@
-import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Button, ScrollView} from 'react-native';
-//Voice To text :
-import Voice from 'react-native-voice';
+/**
+ * Voice Translation react native app
+ */
+import React, {useState} from 'react';
+import {Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
+//
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon2 from 'react-native-vector-icons/dist/Fontisto';
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
-    Voice.onSpeechStart = this.onSpeechStartHandler.bind(this);
-    Voice.onSpeechEnd = this.onSpeechEndHandler.bind(this);
-    Voice.onSpeechPartialResults = this.onSpeechPartialResultsHandler.bind(
-      this,
-    );
-    Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
-    Voice.onSpeechError = this.onSpeechErrorHandler.bind(this);
-    this.state = {
-      speech: 'press START BUTTON',
-    };
-  }
+export const Home = () => {
+  //
+  const [arabicTxt, setarabicTxt] = useState('تحدث بعد الضعط على الزر ...');
+  const [listningStateTxt, setlistningStateTxt] = useState(
+    'إضغط للبدأ بالترجمة',
+  );
 
-  onSpeechStartHandler() {
-    console.log('Speech started');
-    // Update state to notify user that speech recognition has started
-  }
-  onSpeechPartialResultsHandler(e) {
-    // e = { value: string[] }
-    // Loop through e.value for speech transcription results
-    console.log('Partial results', e);
-    this.setState({speech: e.value});
-  }
-
-  onSpeechResultsHandler(e) {
-    // e = { value: string[] }
-    // Loop through e.value for speech transcription results
-    console.log('Speech results', e);
-  }
-
-  onSpeechEndHandler(e) {
-    // e = { error?: boolean }
-    console.log('Speech ended', e);
-  }
-
-  onSpeechErrorHandler(e) {
-    // e = { code?: string, message?: string }
-    //switch (e.code) { ... }
-  }
-
-  ////
-  onStartButtonPress = async () => {
-    try {
-      await Voice.start('en_US');
-    } catch (exception) {
-      // exception = Error | { code: string, message?: string }
-      onSpeechErrorHandler(exception);
-    }
-  };
-  render() {
-    return (
-      <View style={{flex: 1, justifyContent: 'center'}}>
+  return (
+    <View
+      flex={1}
+      style={{
+        backgroundColor: '#1E1E1E',
+        paddingVertical: 5,
+      }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          paddingVertical: 15,
+          marginHorizontal: 20,
+        }}>
         <View
           style={{
-            backgroundColor: '#ecf0f1',
-            height: 150,
-            margin: 20,
-            borderRadius: 20,
-            padding: 20,
+            flexDirection: 'row',
+            alignItems: 'center',
           }}>
-          <ScrollView>
-            <Text> Text : {this.state.speech} </Text>
-          </ScrollView>
+          <Image
+            style={{height: 40, width: 40}}
+            source={require('../img/us.png')}
+          />
+          <Text style={{marginLeft: 5, color: '#888C9F', fontSize: 19}}>
+            English
+          </Text>
         </View>
-
-        <Button title={'start'} onPress={this.onStartButtonPress} />
+        <View style={{flex: 1, alignItems: 'center'}}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#282B32',
+              width: 45,
+              height: 45,
+              borderRadius: 100 / 2,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Icon2 name="arrow-swap" size={25} color="#888C9F" />
+          </TouchableOpacity>
+        </View>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{marginRight: 5, color: '#888C9F', fontSize: 19}}>
+            Arabic
+          </Text>
+          <Image
+            style={{height: 40, width: 40}}
+            source={require('../img/dz.png')}
+          />
+        </View>
       </View>
-    );
-  }
-}
+
+      <View
+        style={{
+          justifyContent: 'center',
+          backgroundColor: '#23262D',
+          borderRadius: 20,
+          margin: 10,
+          height: '80%',
+          marginHorizontal: 20,
+        }}>
+        <View>
+          <Text
+            style={{
+              color: '#888C9F',
+              fontSize: 15,
+              marginTop: 5,
+              textAlign: 'center',
+            }}>
+            {listningStateTxt}
+          </Text>
+        </View>
+        <ScrollView
+          contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
+          <Text
+            style={{
+              color: '#C4C8D2',
+              fontSize: 23,
+              fontWeight: 'bold',
+              textAlign: 'center',
+              justifyContent: 'center',
+              padding: 10,
+            }}>
+            {arabicTxt}
+          </Text>
+        </ScrollView>
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          bottom: 10,
+          width: '100%',
+        }}>
+        <ListneningOn />
+      </View>
+    </View>
+  );
+};
+
+const ListneningOn = () => {
+  return (
+    <View style={{alignItems: 'center'}}>
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#EF4D40',
+          width: 80,
+          height: 80,
+          borderRadius: 100 / 2,
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderWidth: 10,
+          borderColor: '#22272E',
+        }}>
+        <Icon name="pause" size={30} color="white" />
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const ListneningOff = () => {
+  return (
+    <View style={{alignItems: 'center'}}>
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#EF4D40',
+          width: 80,
+          height: 80,
+          borderRadius: 100 / 2,
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderWidth: 10,
+          borderColor: '#22272E',
+        }}>
+        <Icon name="microphone" size={35} color="white" />
+      </TouchableOpacity>
+    </View>
+  );
+};
