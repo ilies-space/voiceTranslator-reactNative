@@ -7,7 +7,7 @@ import Home from './src/Screens/Home';
 
 const App = () => {
   return (
-    <View>
+    <View flex={1}>
       <Home />
     </View>
   );

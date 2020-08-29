@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Button, ScrollView} from 'react-native';
 //Voice To text :
 import Voice from 'react-native-voice';
 
@@ -13,6 +13,9 @@ export default class Home extends Component {
     );
     Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
     Voice.onSpeechError = this.onSpeechErrorHandler.bind(this);
+    this.state = {
+      speech: 'press START BUTTON',
+    };
   }
 
   onSpeechStartHandler() {
@@ -23,6 +26,7 @@ export default class Home extends Component {
     // e = { value: string[] }
     // Loop through e.value for speech transcription results
     console.log('Partial results', e);
+    this.setState({speech: e.value});
   }
 
   onSpeechResultsHandler(e) {
@@ -52,12 +56,21 @@ export default class Home extends Component {
   };
   render() {
     return (
-      <View>
-        <TouchableOpacity onPress={this.onStartButtonPress}>
-          <View>
-            <Text>Start</Text>
-          </View>
-        </TouchableOpacity>
+      <View style={{flex: 1, justifyContent: 'center'}}>
+        <View
+          style={{
+            backgroundColor: '#ecf0f1',
+            height: 150,
+            margin: 20,
+            borderRadius: 20,
+            padding: 20,
+          }}>
+          <ScrollView>
+            <Text> Text : {this.state.speech} </Text>
+          </ScrollView>
+        </View>
+
+        <Button title={'start'} onPress={this.onStartButtonPress} />
       </View>
     );
   }
