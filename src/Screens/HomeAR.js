@@ -14,8 +14,11 @@ import {
 //
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Icon2 from 'react-native-vector-icons/dist/Fontisto';
+<<<<<<< HEAD
 import Tts from 'react-native-tts';
 import {useNavigation} from '@react-navigation/native';
+=======
+>>>>>>> parent of 8cbc8e2... MVP 2
 
 export const HomeAR = (props) => {
   //
@@ -46,14 +49,23 @@ export const HomeAR = (props) => {
   return (
     <View flex={1} style={styles.container}>
       <View style={styles.switchLanHolder}>
+<<<<<<< HEAD
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
+=======
+        <View style={styles.switchLanPosition}>
+>>>>>>> parent of 8cbc8e2... MVP 2
           <Image
             style={{height: 40, width: 40}}
-            source={require('../img/dz.png')}
+            source={require('../img/us.png')}
           />
+<<<<<<< HEAD
 
           <Text style={{marginLeft: 5, color: '#888C9F', fontSize: 19}}>
             Arabic
+=======
+          <Text style={{marginLeft: 5, color: '#888C9F', fontSize: 19}}>
+            English
+>>>>>>> parent of 8cbc8e2... MVP 2
           </Text>
         </View>
         <View style={{flex: 1, alignItems: 'center'}}>
@@ -63,14 +75,20 @@ export const HomeAR = (props) => {
             {switchIcon}
           </TouchableOpacity>
         </View>
+<<<<<<< HEAD
 
         <View style={styles.switchLanPosition}>
           <Text style={{marginRight: 5, color: '#888C9F', fontSize: 19}}>
             English
+=======
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{marginRight: 5, color: '#888C9F', fontSize: 19}}>
+            Arabic
+>>>>>>> parent of 8cbc8e2... MVP 2
           </Text>
           <Image
             style={{height: 40, width: 40}}
-            source={require('../img/us.png')}
+            source={require('../img/dz.png')}
           />
         </View>
       </View>
@@ -114,7 +132,7 @@ export const HomeAR = (props) => {
       </View>
       <TouchableOpacity
         style={{position: 'absolute', top: '30%', right: '10%'}}
-        onPress={() => Tts.speak(EnglishVersion)}>
+        onPress={() => console.log('play Audio')}>
         <Icon name="play-circle" size={35} color="white" />
       </TouchableOpacity>
     </View>
@@ -141,8 +159,7 @@ const InputArabic = ({value, setValue, setarabicTxt, setEnglishVersion}) => {
       .then((responseJson) => {
         //console.log(responseJson);
         console.log(responseJson.matches[0].translation);
-        setEnglishVersion(responseJson.matches[0].translation);
-        Tts.speak(responseJson.matches[0].translation);
+        setEnglishVersion(responseJson.matches[1].translation);
 
         // return responseJson.matches[0].translation;
       })
