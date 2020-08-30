@@ -3,14 +3,14 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'voiceTranslator' do
+target 'SpeechTranslator' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
   pod 'react-native-voice', :path => '../node_modules/react-native-voice'
 
-  target 'voiceTranslatorTests' do
+  target 'SpeechTranslatorTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -25,10 +25,10 @@ target 'voiceTranslator' do
   end
 end
 
-target 'voiceTranslator-tvOS' do
-  # Pods for voiceTranslator-tvOS
+target 'SpeechTranslator-tvOS' do
+  # Pods for SpeechTranslator-tvOS
 
-  target 'voiceTranslator-tvOSTests' do
+  target 'SpeechTranslator-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
