@@ -111,6 +111,7 @@ export default class VoiceToText extends Component {
     // }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     const HomeFr = () => {
       return (
@@ -128,6 +129,8 @@ export default class VoiceToText extends Component {
 =======
 =======
 >>>>>>> parent of 8cbc8e2... MVP 2
+=======
+>>>>>>> parent of 8cbc8e2... MVP 2
     return (
       <View style={{flex: 1, justifyContent: 'center'}}>
         {/* <Home
@@ -141,6 +144,9 @@ export default class VoiceToText extends Component {
           translatedTxt={this.state.speech}
         />
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 8cbc8e2... MVP 2
+=======
 >>>>>>> parent of 8cbc8e2... MVP 2
 =======
 >>>>>>> parent of 8cbc8e2... MVP 2
