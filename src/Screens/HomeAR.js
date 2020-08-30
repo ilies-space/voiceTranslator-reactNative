@@ -15,8 +15,11 @@ import {
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Icon2 from 'react-native-vector-icons/dist/Fontisto';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Tts from 'react-native-tts';
 import {useNavigation} from '@react-navigation/native';
+=======
+>>>>>>> parent of 8cbc8e2... MVP 2
 =======
 >>>>>>> parent of 8cbc8e2... MVP 2
 
@@ -50,7 +53,11 @@ export const HomeAR = (props) => {
     <View flex={1} style={styles.container}>
       <View style={styles.switchLanHolder}>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
+=======
+        <View style={styles.switchLanPosition}>
+>>>>>>> parent of 8cbc8e2... MVP 2
 =======
         <View style={styles.switchLanPosition}>
 >>>>>>> parent of 8cbc8e2... MVP 2
@@ -59,9 +66,14 @@ export const HomeAR = (props) => {
             source={require('../img/us.png')}
           />
 <<<<<<< HEAD
+<<<<<<< HEAD
 
           <Text style={{marginLeft: 5, color: '#888C9F', fontSize: 19}}>
             Arabic
+=======
+          <Text style={{marginLeft: 5, color: '#888C9F', fontSize: 19}}>
+            English
+>>>>>>> parent of 8cbc8e2... MVP 2
 =======
           <Text style={{marginLeft: 5, color: '#888C9F', fontSize: 19}}>
             English
@@ -76,10 +88,16 @@ export const HomeAR = (props) => {
           </TouchableOpacity>
         </View>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         <View style={styles.switchLanPosition}>
           <Text style={{marginRight: 5, color: '#888C9F', fontSize: 19}}>
             English
+=======
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{marginRight: 5, color: '#888C9F', fontSize: 19}}>
+            Arabic
+>>>>>>> parent of 8cbc8e2... MVP 2
 =======
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Text style={{marginRight: 5, color: '#888C9F', fontSize: 19}}>
