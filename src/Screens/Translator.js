@@ -1,8 +1,8 @@
 /**
  * Voice Translation react native app
  */
-import React, {useState} from 'react';
-import {Text, View, Button, TextInput} from 'react-native';
+import React from 'react';
+import {View} from 'react-native';
 
 export const Translator = () => {
   return <View flex={1}></View>;

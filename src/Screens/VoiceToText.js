@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Button, ScrollView} from 'react-native';
+import {View} from 'react-native';
 //Voice To text :
 import Voice from 'react-native-voice';
 import {Home} from './Home';
@@ -111,17 +111,6 @@ export default class VoiceToText extends Component {
     //     });
     // }
 
-    const HomeAr = () => {
-      return (
-        <HomeAR
-          // translateText={translateText}
-          englishVersion={this.state.englishVersion}
-          translatedTxt={this.state.speech}
-        />
-      );
-    };
-
-    //
     const HomeFr = () => {
       return (
         <Home

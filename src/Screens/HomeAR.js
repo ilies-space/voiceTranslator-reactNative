@@ -15,6 +15,7 @@ import {
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Icon2 from 'react-native-vector-icons/dist/Fontisto';
 import Tts from 'react-native-tts';
+import {useNavigation} from '@react-navigation/native';
 
 export const HomeAR = (props) => {
   //
@@ -40,34 +41,37 @@ export const HomeAR = (props) => {
     setisListning(false);
     setlistningStateTxt('إضغط للبدأ بالترجمة');
   }
+  const navigation = useNavigation();
+
   return (
     <View flex={1} style={styles.container}>
       <View style={styles.switchLanHolder}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{marginRight: 5, color: '#888C9F', fontSize: 19}}>
-            Arabic
-          </Text>
           <Image
             style={{height: 40, width: 40}}
             source={require('../img/dz.png')}
           />
+
+          <Text style={{marginLeft: 5, color: '#888C9F', fontSize: 19}}>
+            Arabic
+          </Text>
         </View>
         <View style={{flex: 1, alignItems: 'center'}}>
           <TouchableOpacity
             style={styles.switchLan}
-            onPress={() => console.log('switch language')}>
+            onPress={() => navigation.goBack()}>
             {switchIcon}
           </TouchableOpacity>
         </View>
 
         <View style={styles.switchLanPosition}>
+          <Text style={{marginRight: 5, color: '#888C9F', fontSize: 19}}>
+            English
+          </Text>
           <Image
             style={{height: 40, width: 40}}
             source={require('../img/us.png')}
           />
-          <Text style={{marginLeft: 5, color: '#888C9F', fontSize: 19}}>
-            English
-          </Text>
         </View>
       </View>
 

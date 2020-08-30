@@ -1,7 +1,7 @@
 /**
  * Voice Translation react native app
  */
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   Text,
   View,
@@ -14,10 +14,11 @@ import {
 //
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Icon2 from 'react-native-vector-icons/dist/Fontisto';
+import {useNavigation} from '@react-navigation/native';
 
 export const Home = (props) => {
   //
-
+  const navigation = useNavigation();
   const [arabicTxt, setarabicTxt] = useState(' ...');
   const [listningStateTxt, setlistningStateTxt] = useState(
     'إضغط  على الميكروفون في الأسفل للبدأ بالترجمة',
@@ -53,7 +54,7 @@ export const Home = (props) => {
         <View style={{flex: 1, alignItems: 'center'}}>
           <TouchableOpacity
             style={styles.switchLan}
-            onPress={() => console.log('switch language')}>
+            onPress={() => navigation.push('HomeAR')}>
             {switchIcon}
           </TouchableOpacity>
         </View>
