@@ -10,6 +10,10 @@ target 'voiceTranslator' do
 
   pod 'react-native-voice', :path => '../node_modules/react-native-voice'
 
+  pod 'TextToSpeech', :path => '../node_modules/react-native-tts'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'voiceTranslatorTests' do
     inherit! :complete
     # Pods for testing

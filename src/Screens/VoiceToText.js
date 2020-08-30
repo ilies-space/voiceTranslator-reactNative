@@ -18,6 +18,7 @@ export default class VoiceToText extends Component {
     this.state = {
       speech: '...',
       englishVersion: '...',
+      screenEnglis: true,
     };
   }
 
@@ -109,18 +110,31 @@ export default class VoiceToText extends Component {
     //       console.log(error);
     //     });
     // }
-    return (
-      <View style={{flex: 1, justifyContent: 'center'}}>
-        {/* <Home
-          translatedTxt={this.state.speech}
-          start={this.onStartButtonPress}
-          englishVersion={this.state.englishVersion}
-        /> */}
+
+    const HomeAr = () => {
+      return (
         <HomeAR
           // translateText={translateText}
           englishVersion={this.state.englishVersion}
           translatedTxt={this.state.speech}
         />
+      );
+    };
+
+    //
+    const HomeFr = () => {
+      return (
+        <Home
+          translatedTxt={this.state.speech}
+          start={this.onStartButtonPress}
+          englishVersion={this.state.englishVersion}
+          onswitchClicked={this.changeScreenToArab}
+        />
+      );
+    };
+    return (
+      <View style={{flex: 1, justifyContent: 'center'}}>
+        {this.state.screenEnglis ? <HomeFr /> : <HomeAR />}
       </View>
     );
   }
