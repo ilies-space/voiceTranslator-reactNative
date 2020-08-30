@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, Button, ScrollView} from 'react-native';
 //Voice To text :
 import Voice from 'react-native-voice';
 import {Home} from './Home';
+import {HomeAR} from './HomeAR';
 
 export default class VoiceToText extends Component {
   constructor(props) {
@@ -80,12 +81,45 @@ export default class VoiceToText extends Component {
     }
   };
   render() {
+    // TO Convert from arabi to English ...
+    // function translateText(value) {
+    //   const result = value;
+    //   console.log('result is :' + result);
+    //   //this.setState({englishVersion: result});
+    //   console.log('englishVersion: ' + result);
+    //   const textCoded = encodeURIComponent(result.trim());
+    //   console.log(textCoded);
+    //   const part1 = 'https://api.mymemory.translated.net/get?q=';
+    //   const part2 = '!&langpair=en|ar';
+    //   const link = part1.concat(textCoded, part2);
+    //   fetch(link, {
+    //     method: 'GET',
+    //   })
+    //     .then((response) => response.json())
+    //     .then((responseJson) => {
+    //       //console.log(responseJson);
+    //       //setconvertedText(responseJson.matches[0].translation);
+
+    //       const result = responseJson.matches[0].translation;
+
+    //       //this.setState({speech: result});
+    //       console.log('speech: ' + result);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // }
     return (
       <View style={{flex: 1, justifyContent: 'center'}}>
-        <Home
+        {/* <Home
           translatedTxt={this.state.speech}
           start={this.onStartButtonPress}
           englishVersion={this.state.englishVersion}
+        /> */}
+        <HomeAR
+          // translateText={translateText}
+          englishVersion={this.state.englishVersion}
+          translatedTxt={this.state.speech}
         />
       </View>
     );

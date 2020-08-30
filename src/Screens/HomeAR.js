@@ -15,14 +15,15 @@ import {
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Icon2 from 'react-native-vector-icons/dist/Fontisto';
 
-export const Home = (props) => {
+export const HomeAR = (props) => {
   //
 
-  const [arabicTxt, setarabicTxt] = useState(' ...');
+  const [arabicTxt, setarabicTxt] = useState('...');
   const [listningStateTxt, setlistningStateTxt] = useState(
     'إضغط  على الميكروفون في الأسفل للبدأ بالترجمة',
   );
-  const [isListning, setisListning] = useState(false);
+  const [Value, setValue] = useState('');
+  const [EnglishVersion, setEnglishVersion] = useState('...');
 
   //icons :
   const switchIcon = <Icon2 name="arrow-swap" size={25} color="#888C9F" />;
@@ -71,14 +72,14 @@ export const Home = (props) => {
       <View style={styles.cardTXT}>
         <ScrollView
           contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
-          <Text style={styles.txtDisplay}>{props.translatedTxt}</Text>
+          <Text style={styles.txtDisplay}>{EnglishVersion}</Text>
           <View>
-            <Text style={styles.recState}>{props.englishVersion}</Text>
+            <Text style={styles.recState}>{arabicTxt}</Text>
           </View>
         </ScrollView>
       </View>
       <View style={styles.recBtnHolder}>
-        {props.isListning ? (
+        {/* {props.isListning ? (
           <View style={{alignItems: 'center'}}>
             <TouchableOpacity
               style={styles.recBtn}
@@ -94,45 +95,66 @@ export const Home = (props) => {
               <Icon name="microphone" size={35} color="white" />
             </TouchableOpacity>
           </View>
-        )}
+        )} */}
         {/* <ListneningOn /> */}
-        {/* <View style={{marginHorizontal: 10, marginBottom: 10}}>
-          <InputArabic />
-        </View> */}
+        <View style={{marginHorizontal: 10, marginBottom: 10}}>
+          <InputArabic
+            value={Value}
+            setValue={setValue}
+            setarabicTxt={setarabicTxt}
+            setEnglishVersion={setEnglishVersion}
+          />
+        </View>
       </View>
-    </View>
-  );
-};
-
-const ListneningOn = () => {
-  return (
-    <View style={{alignItems: 'center'}}>
-      <TouchableOpacity style={styles.recBtn} onPress={() => stopListning()}>
-        <Icon name="pause" size={30} color="white" />
+      <TouchableOpacity
+        style={{position: 'absolute', top: '30%', right: '10%'}}
+        onPress={() => console.log('play Audio')}>
+        <Icon name="play-circle" size={35} color="white" />
       </TouchableOpacity>
     </View>
   );
 };
 
-const ListneningOff = () => {
-  return (
-    <View style={{alignItems: 'center'}}>
-      <TouchableOpacity style={styles.recBtn} onPress={() => startListning()}>
-        <Icon name="microphone" size={35} color="white" />
-      </TouchableOpacity>
-    </View>
-  );
-};
+const InputArabic = ({value, setValue, setarabicTxt, setEnglishVersion}) => {
+  function startTranslating(value) {
+    setarabicTxt(value);
+    Translate(value);
+  }
 
-const InputArabic = () => {
+  function Translate(text) {
+    const textCoded = text.replace(/ /g, '%20');
+    console.log(textCoded);
+    const part1 = 'https://api.mymemory.translated.net/get?q=';
+    const part2 = '!&langpair=ar|en';
+    const link = part1.concat(textCoded, part2);
+
+    fetch(link, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        //console.log(responseJson);
+        console.log(responseJson.matches[0].translation);
+        setEnglishVersion(responseJson.matches[1].translation);
+
+        // return responseJson.matches[0].translation;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   return (
     <View style={{alignItems: 'center', flexDirection: 'row'}}>
       <View style={styles.textBox}>
-        <TextInput placeholder={'أكتب النص هنا'} />
+        <TextInput
+          placeholder={'أكتب النص هنا'}
+          onChangeText={(value) => setValue(value)}
+          value={value}
+        />
       </View>
       <TouchableOpacity
         style={styles.sendBtn}
-        onPress={() => console.log('Arab text ...')}>
+        onPress={() => startTranslating(value)}>
         <Icon name="send" size={35} color="white" />
       </TouchableOpacity>
     </View>
